@@ -1,0 +1,14 @@
+{
+  "name": "readMe",
+  "version": "1.0",
+  "description": "Chrome extension for creating a reading list based on bookmarks",
+  "permissions": ["storage", "tabs"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Start Reading!!"
+  },
+  "manifest_version": 2
+}
