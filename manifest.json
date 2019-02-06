@@ -2,7 +2,7 @@
   "name": "readMe",
   "version": "1.0",
   "description": "Chrome extension for creating a reading list based on bookmarks",
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage", "tabs", "bookmarks"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
