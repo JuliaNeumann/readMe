@@ -12,9 +12,19 @@ document.addEventListener('DOMContentLoaded', function() {
            a.classList.add("uk-card-title");
            a.href = bookmark.url;
            a.innerText = bookmark.title;
+            div.appendChild(a);
+
+           if (bookmark.notes && bookmark.notes.length > 0) {
+               let ul = document.createElement('ul');
+               bookmark.notes.forEach(note => {
+                   let li = document.createElement('li');
+                   li.innerText = note;
+                   ul.appendChild(li);
+               });
+               div.appendChild(ul);
+           }
 
            let wrapper = document.createElement('div');
-           div.appendChild(a);
            wrapper.append(div);
            showList.appendChild(wrapper);
         });
