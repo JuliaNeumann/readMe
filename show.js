@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     let showList = document.getElementById("show_list");
 
-    chrome.storage.sync.get(["readMe"], function(result) {
+    chrome.storage.local.get(["readMe"], function(result) {
         let seenUrls = result.readMe && result.readMe.seenUrls ? result.readMe.seenUrls : [];
 
         seenUrls.forEach(bookmark => {

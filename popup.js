@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     noteInput.addEventListener('keyup', function(event) {
         if (event.keyCode === 13) { // enter key
-            chrome.storage.sync.get(["readMe"], function(result) {
+            chrome.storage.local.get(["readMe"], function(result) {
                 let seenUrls = result.readMe && result.readMe.seenUrls ? result.readMe.seenUrls : [];
                 if (seenUrls.length > 0) {
                     seenUrls[seenUrls.length - 1].notes.push(noteInput.value);
-                    chrome.storage.sync.set({"readMe": {seenUrls}}, function() {
+                    chrome.storage.local.set({"readMe": {seenUrls}}, function() {
                         noteInput.value = "";
                     });
                 }
@@ -27,12 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function handleNextBookmark(bookmarkTreeNodes) {
-    chrome.storage.sync.get(["readMe"], function(result) {
+    chrome.storage.local.get(["readMe"], function(result) {
         let seenUrls = result.readMe && result.readMe.seenUrls ? result.readMe.seenUrls : [];
         let nextBookmark = getNextBookmark(bookmarkTreeNodes);
         nextBookmark.notes = [];
         seenUrls.push(nextBookmark);
-        chrome.storage.sync.set({"readMe": {seenUrls}}, function() {
+        chrome.storage.local.set({"readMe": {seenUrls}}, function() {
             chrome.tabs.update({'url': nextBookmark.url});
             chrome.bookmarks.remove(nextBookmark.id);
         });
